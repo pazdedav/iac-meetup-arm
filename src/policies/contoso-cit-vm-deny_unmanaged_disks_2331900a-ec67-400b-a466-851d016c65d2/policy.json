@@ -1,0 +1,60 @@
+{
+ "properties": {
+  "displayName": "contoso-cit-vm-deny_unmanaged_disks",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "This policy denies VMs that do not use managed disks",
+  "metadata": {
+   "category": "Compute",
+   "createdBy": "5cb2d5ec-8470-4032-a120-a072edf70b60",
+   "createdOn": "2020-10-11T13:39:44.9989622Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "anyOf": [
+     {
+      "allOf": [
+       {
+        "field": "type",
+        "equals": "Microsoft.Compute/virtualMachines"
+       },
+       {
+        "field": "Microsoft.Compute/virtualMachines/osDisk.uri",
+        "exists": "True"
+       }
+      ]
+     },
+     {
+      "allOf": [
+       {
+        "field": "type",
+        "equals": "Microsoft.Compute/VirtualMachineScaleSets"
+       },
+       {
+        "anyOf": [
+         {
+          "field": "Microsoft.Compute/VirtualMachineScaleSets/osDisk.vhdContainers",
+          "exists": "True"
+         },
+         {
+          "field": "Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl",
+          "exists": "True"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/74729c08-12f9-49fc-9817-39e6af4041d1/providers/Microsoft.Authorization/policyDefinitions/2331900a-ec67-400b-a466-851d016c65d2",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "2331900a-ec67-400b-a466-851d016c65d2"
+}

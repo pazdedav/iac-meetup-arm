@@ -1,0 +1,43 @@
+{
+ "properties": {
+  "displayName": "contoso-cit-storage-enforce_geo_redundancy",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "This policy ensures that all Storage Accounts are geo-redundant.",
+  "metadata": {
+   "category": "Storage",
+   "createdBy": "5cb2d5ec-8470-4032-a120-a072edf70b60",
+   "createdOn": "2020-10-11T13:33:40.0097472Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Storage/storageAccounts"
+     },
+     {
+      "not": {
+       "field": "Microsoft.Storage/storageAccounts/sku.name",
+       "in": [
+        "Standard_GRS",
+        "Standard_RAGRS",
+        "Standard_GZRS",
+        "Standard_RAGZRS"
+       ]
+      }
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/74729c08-12f9-49fc-9817-39e6af4041d1/providers/Microsoft.Authorization/policyDefinitions/65458ae3-b143-401d-8329-305883400c19",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "65458ae3-b143-401d-8329-305883400c19"
+}

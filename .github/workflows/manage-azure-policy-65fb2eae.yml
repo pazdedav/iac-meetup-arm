@@ -1,0 +1,39 @@
+name: manage-azure-policy-65fb2eae
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'src/policies/contoso-cit-vm-deny_unmanaged_disks_2331900a-ec67-400b-a466-851d016c65d2/**'
+#      - 'src/policies/contoso-cit-storage-enforce_geo_redundancy_65458ae3-b143-401d-8329-305883400c19/**'
+#      - 'src/policies/contoso-cit-security-disable_rdp_internet_6b1ab5b9-fea7-4c93-a737-df5a359d0af5/**'
+#      - 'src/policies/contoso-cit-storage-enforce_secure_transfer_a29597c0-2e40-4643-a4f9-68825be474ac/**'
+#      - 'src/policies/contoso-cit-vm-allowed_os_skus_a29597c0-2e40-4643-a4f9-68825be47d3f/**'
+#      - .github/workflows/manage-azure-policy-65fb2eae.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_65fb2eae}}
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          src/policies/contoso-cit-vm-deny_unmanaged_disks_2331900a-ec67-400b-a466-851d016c65d2/**
+          src/policies/contoso-cit-storage-enforce_geo_redundancy_65458ae3-b143-401d-8329-305883400c19/**
+          src/policies/contoso-cit-security-disable_rdp_internet_6b1ab5b9-fea7-4c93-a737-df5a359d0af5/**
+          src/policies/contoso-cit-storage-enforce_secure_transfer_a29597c0-2e40-4643-a4f9-68825be474ac/**
+          src/policies/contoso-cit-vm-allowed_os_skus_a29597c0-2e40-4643-a4f9-68825be47d3f/**
