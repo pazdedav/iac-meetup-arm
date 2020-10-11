@@ -1,0 +1,52 @@
+{
+ "properties": {
+  "displayName": "contoso-cit-storage-enforce_secure_transfer",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "Enforces the requirement of Secure transfer in your storage account. Secure transfer is an option that forces your storage account to accept requests only from secure connections (HTTPS). Use of HTTPS ensures authentication between the server and the service and protects data in transit from network layer attacks such as man-in-the-middle, eavesdropping, and session-hijacking.",
+  "metadata": {
+   "category": "Storage",
+   "createdBy": "5cb2d5ec-8470-4032-a120-a072edf70b60",
+   "createdOn": "2020-10-11T13:35:52.7975481Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Storage/storageAccounts"
+     },
+     {
+      "anyOf": [
+       {
+        "allOf": [
+         {
+          "value": "[requestContext().apiVersion]",
+          "less": "2019-04-01"
+         },
+         {
+          "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+          "exists": "false"
+         }
+        ]
+       },
+       {
+        "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+        "equals": "false"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/74729c08-12f9-49fc-9817-39e6af4041d1/providers/Microsoft.Authorization/policyDefinitions/a29597c0-2e40-4643-a4f9-68825be474ac",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "a29597c0-2e40-4643-a4f9-68825be474ac"
+}

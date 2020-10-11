@@ -1,0 +1,75 @@
+{
+ "properties": {
+  "displayName": "contoso-cit-vm-allowed_os_skus",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Enforces only approved image publishers, offers, and versions.",
+  "metadata": {
+   "category": "Compliance",
+   "createdBy": "5cb2d5ec-8470-4032-a120-a072edf70b60",
+   "createdOn": "2020-10-11T13:38:01.8437308Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "imagePublisher": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "Approved VM image Publishers",
+     "description": "The list of approved VM image Publishers."
+    }
+   },
+   "imageOffer": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "Approved VM image Offers",
+     "description": "The list of approved VM image Offers."
+    }
+   },
+   "imageSkuIds": {
+    "type": "Array",
+    "metadata": {
+     "displayName": "Approved VM image Skus",
+     "description": "The list of approved VM image Skus."
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "in": [
+       "Microsoft.Compute/virtualMachines",
+       "Microsoft.Compute/VirtualMachineScaleSets"
+      ]
+     },
+     {
+      "not": {
+       "allOf": [
+        {
+         "field": "Microsoft.Compute/imagePublisher",
+         "in": "[parameters('imagePublisher')]"
+        },
+        {
+         "field": "Microsoft.Compute/imageOffer",
+         "in": "[parameters('imageOffer')]"
+        },
+        {
+         "field": "Microsoft.Compute/imageSku",
+         "in": "[parameters('imageSkuIds')]"
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "then": {
+    "effect": "deny"
+   }
+  }
+ },
+ "id": "/subscriptions/74729c08-12f9-49fc-9817-39e6af4041d1/providers/Microsoft.Authorization/policyDefinitions/a29597c0-2e40-4643-a4f9-68825be47d3f",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "a29597c0-2e40-4643-a4f9-68825be47d3f"
+}
