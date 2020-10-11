@@ -8,8 +8,15 @@
    "category": "Storage",
    "createdBy": "5cb2d5ec-8470-4032-a120-a072edf70b60",
    "createdOn": "2020-10-11T13:33:40.0097472Z",
-   "updatedBy": null,
-   "updatedOn": null
+   "updatedBy": "0735ed14-dc6d-47a0-a24d-82cee88d3009",
+   "updatedOn": "2020-10-11T13:58:13.6663642Z",
+   "gitHubPolicy": {
+    "digest": "d6577be67a345a32ebbe4b2cee5f1ba19aa57ec9",
+    "repoName": "pazdedav/iac-meetup-arm",
+    "commitSha": "01415fff77ee87e293feb01b0c4e58af2ee7c7e3",
+    "runUrl": "https://github.com/pazdedav/iac-meetup-arm/actions/runs/300556745",
+    "filepath": "src/policies/contoso-cit-storage-enforce_geo_redundancy_65458ae3-b143-401d-8329-305883400c19"
+   }
   },
   "parameters": {},
   "policyRule": {

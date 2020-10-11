@@ -8,8 +8,15 @@
    "category": "Compute",
    "createdBy": "5cb2d5ec-8470-4032-a120-a072edf70b60",
    "createdOn": "2020-10-11T13:39:44.9989622Z",
-   "updatedBy": null,
-   "updatedOn": null
+   "updatedBy": "0735ed14-dc6d-47a0-a24d-82cee88d3009",
+   "updatedOn": "2020-10-11T13:58:13.4611519Z",
+   "gitHubPolicy": {
+    "digest": "8554c2d43f73ca58f3c7d5c9687ccb59ae08d2fd",
+    "repoName": "pazdedav/iac-meetup-arm",
+    "commitSha": "01415fff77ee87e293feb01b0c4e58af2ee7c7e3",
+    "runUrl": "https://github.com/pazdedav/iac-meetup-arm/actions/runs/300556745",
+    "filepath": "src/policies/contoso-cit-vm-deny_unmanaged_disks_2331900a-ec67-400b-a466-851d016c65d2"
+   }
   },
   "parameters": {},
   "policyRule": {

@@ -8,8 +8,15 @@
    "category": "Network",
    "createdBy": "5cb2d5ec-8470-4032-a120-a072edf70b60",
    "createdOn": "2020-10-11T13:31:33.5762932Z",
-   "updatedBy": null,
-   "updatedOn": null
+   "updatedBy": "0735ed14-dc6d-47a0-a24d-82cee88d3009",
+   "updatedOn": "2020-10-11T13:58:13.5539656Z",
+   "gitHubPolicy": {
+    "digest": "acdf7d9d8d64a94961e4f652b3c2090e055ff6c2",
+    "repoName": "pazdedav/iac-meetup-arm",
+    "commitSha": "01415fff77ee87e293feb01b0c4e58af2ee7c7e3",
+    "runUrl": "https://github.com/pazdedav/iac-meetup-arm/actions/runs/300556745",
+    "filepath": "src/policies/contoso-cit-security-disable_rdp_internet_6b1ab5b9-fea7-4c93-a737-df5a359d0af5"
+   }
   },
   "parameters": {},
   "policyRule": {
