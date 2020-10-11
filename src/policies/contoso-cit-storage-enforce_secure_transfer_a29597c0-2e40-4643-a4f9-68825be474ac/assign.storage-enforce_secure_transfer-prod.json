@@ -1,0 +1,14 @@
+{
+  "name": "contoso-cit-storage-enforce_secure_transfer-prod",
+  "location": "westeurope",
+  "properties": {
+    "displayName": "contoso-cit-storage-enforce_secure_transfer-prod",
+    "policyDefinitionId": "/subscriptions/74729c08-12f9-49fc-9817-39e6af4041d1/providers/Microsoft.Authorization/policyDefinitions/a29597c0-2e40-4643-a4f9-68825be474ac",
+    "scope": "/subscriptions/74729c08-12f9-49fc-9817-39e6af4041d1",
+    "notScopes": [
+    ],
+    "parameters": {
+    },
+    "metadata": {}
+  }
+}
