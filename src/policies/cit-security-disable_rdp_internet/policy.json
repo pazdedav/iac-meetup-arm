@@ -97,5 +97,6 @@
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "cit-security-disable_rdp_internet"
+    "name": "cit-security-disable_rdp_internet",
+    "id": "fffe62db-6bdb-4d67-95e7-91059c586d01"
 }

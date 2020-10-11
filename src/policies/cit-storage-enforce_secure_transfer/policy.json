@@ -43,5 +43,6 @@
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "cit-storage-enforce_secure_transfer"
+    "name": "cit-storage-enforce_secure_transfer",
+    "id": "fffe62db-6bdb-4d67-95e7-91059c586d03"
 }

@@ -34,5 +34,6 @@
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "cit-storage-enforce_geo_redundancy"
+    "name": "cit-storage-enforce_geo_redundancy",
+    "id": "fffe62db-6bdb-4d67-95e7-91059c586d02"
 }

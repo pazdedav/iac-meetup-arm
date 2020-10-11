@@ -52,5 +52,6 @@
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "cit-vm-deny_unmanaged_disks"
+    "name": "cit-vm-deny_unmanaged_disks",
+    "id": "fffe62db-6bdb-4d67-95e7-91059c586d05"
 }

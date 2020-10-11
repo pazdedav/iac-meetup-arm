@@ -120,5 +120,6 @@
         }
     },
     "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "cit-vm-allowed_os_skus"
+    "name": "cit-vm-allowed_os_skus",
+    "id": "fffe62db-6bdb-4d67-95e7-91059c586d04"
 }
