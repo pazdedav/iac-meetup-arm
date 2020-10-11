@@ -37,3 +37,4 @@ jobs:
           src/policies/cit-storage-enforce_secure_transfer/**
           src/policies/cit-vm-allowed_os_skus/**
           src/policies/cit-vm-deny_unmanaged_disks/**
+        mode: complete
