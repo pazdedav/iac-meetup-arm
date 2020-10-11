@@ -1,0 +1,124 @@
+{
+    "properties": {
+        "displayName": "cit-vm-allowed_os_skus",
+        "policyType": "Custom",
+        "mode": "Indexed",
+        "description": "This policy ensures that only certain VM images can be used when creating VMs",
+        "metadata": {
+            "version": "1.0.0",
+            "category": "Compute"
+        },
+        "parameters": {
+            "imagePublisher": {
+                "type": "Array",
+                "metadata": {
+                    "displayName": "Approved VM image Publishers",
+                    "description": "The list of approved VM image Publishers."
+                }
+            },
+            "imageOffer": {
+                "type": "Array",
+                "metadata": {
+                    "displayName": "Approved VM image Offers",
+                    "description": "The list of approved VM image Offers."
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "in": [
+                            "Microsoft.Compute/virtualMachines",
+                            "Microsoft.Compute/VirtualMachineScaleSets"
+                        ]
+                    },
+                    {
+                        "not": {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "field": "Microsoft.Compute/imagePublisher",
+                                            "in": "[parameters('imagePublisher')]"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/imageOffer",
+                                            "in": "[parameters('imageOffer')]"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "anyOf": [
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "2016*"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "2019*"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "7*"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "8*"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "bundle*"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "byol"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "web"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "Enterprise"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "Standard"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "Express"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "SQLDEV"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "gen1"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "gen2"
+                                        },
+                                        {
+                                            "field": "Microsoft.Compute/virtualMachines/imageSku",
+                                            "Like": "tenablecorenessusbyol"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    },
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "cit-vm-allowed_os_skus"
+}
