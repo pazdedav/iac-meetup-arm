@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceGroupName": {
+            "value": "contoso-template-library-prod-rg"
+        },
+        "location": {
+            "value": "West Europe"
+        },
+        "servicePrincipals": {
+            "value": [
+                "d9087414-ac6c-4c1f-83f0-9afba0002262",
+                "dc3f6501-1f1e-4155-88cb-bbd6cb620d52"
+            ]
+        }
+    }
+}
