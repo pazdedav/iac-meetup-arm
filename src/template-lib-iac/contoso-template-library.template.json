@@ -32,7 +32,8 @@
     "functions": [],
     "variables": {
         // Role definition Id for the Reader role in the central subscription hosting template specs
-        "roleDefinitionId": "[concat('/subscriptions/', '', '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]"
+        "roleDefinitionId": "[concat('/subscriptions/', '74729c08-12f9-49fc-9817-39e6af4041d1', '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]",
+        "env": "[if(contains(parameters('resourceGroupName'), '-prod-rg'), 'prod', 'qa')]" //Required for role assignment GUID
 
     },
     "resources": [
@@ -48,7 +49,8 @@
             }
         },
         {
-            "name": "[concat('reader-role-assignment-', parameters('timeStamp'))]",
+            // Reference: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/cross-scope-deployment
+            "name": "[concat('reader-role-assignment-', parameters('timeStamp'), copyIndex('role-assignment-copy'))]",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2019-10-01",
             "dependsOn": [
@@ -65,6 +67,7 @@
                 },
                 "mode": "Incremental",
                 "template": {
+                    // Reference: https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-template
                     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                     "contentVersion": "1.0.0.0",
                     "parameters": {},
@@ -74,7 +77,7 @@
                             "type": "Microsoft.Authorization/roleAssignments",
                             "apiVersion": "2018-09-01-preview",
                             //"name": "[guid(resourceGroup().id)]",
-                            "name": "[concat(parameters('resourceGroupName'), '/Microsoft.Authorization/', parameters('servicePrincipals')[copyIndex('role-assignment-copy')])]",
+                            "name": "[guid(concat(parameters('servicePrincipals')[copyIndex('role-assignment-copy')], variables('env')))]",
                             "properties": {
                                 "roleDefinitionId": "[variables('roleDefinitionId')]",
                                 "principalId": "[parameters('servicePrincipals')[copyIndex('role-assignment-copy')]]"
