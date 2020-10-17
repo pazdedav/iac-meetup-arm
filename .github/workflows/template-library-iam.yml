@@ -29,6 +29,7 @@ jobs:
       with:
         subscriptionId: 74729c08-12f9-49fc-9817-39e6af4041d1
         scope: subscription
+        region: westeurope  
         template: src/template-lib-iac/contoso-template-library.template.json
         parameters: src/template-lib-iac/contoso-template-library.prod.parameters.json
         deploymentName: ${{ github.workflow }}-${{ github.run_id }}
