@@ -28,8 +28,7 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: 74729c08-12f9-49fc-9817-39e6af4041d1
-        scope: subscription
-        region: westeurope
+        resourceGroupName: contoso-ServiceOne-rg
         template: src/template-example/serviceOne.template.json
         parameters: src/template-example/serviceOne.prod.parameters.json
         deploymentName: ${{ github.workflow }}-${{ github.run_id }}
