@@ -2,17 +2,21 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageConfig": {
+        "storageAccountConfig": {
             "type": "object",
             "metadata": {
                 "description": "Storage account configuration in JSON object."
             }
         },
-        "vmConfig": {
-            "type": "object",
-            "metadata": {
-                "description": "Virtual machine configuration in JSON object."
-            }
+        "storageAccountType": {
+            "type": "string",
+            "defaultValue": "Standard_GRS",
+            "allowedValues": [
+                "Standard_GRS",
+                "Standard_RAGRS",
+                "Standard_GZRS",
+                "Standard_RAGZRS"
+            ]
         },
         "timeStamp": {
             "type": "string",
@@ -24,50 +28,30 @@
     },
     "functions": [],
     "variables": {
-        "templateLibraryRG": "contoso-templates-lib-rg",
-        "storageSpec": {
-            "name": "contosoStorage",
-            "version": "1.0",
-            "deploymentName": "[concat(variables('storageSpec').name, '-templateSpec-deployment-', parameters('timeStamp'))]",
-            "templateLinkId": "[resourceId(variables('templateLibraryRG'), 'Microsoft.Resources/templateSpecs/versions', variables('storageSpec').name, variables('storageSpec').version)]"
-        },
-        "vmSpec": {
-            "name": "contosoWindowsVM",
-            "version": "1.0",
-            "deploymentName": "[concat(variables('vmSpec').name, '-templateSpec-deployment-', parameters('timeStamp'))]",
-            "templateLinkId": "[resourceId(variables('templateLibraryRG'), 'Microsoft.Resources/templateSpecs/versions', variables('vmSpec').name, variables('vmSpec').version)]"
-        }
+        "templateLibraryRG": "contoso-template-library-prod-rg",
+        "storageSpecName": "contosoStorage",
+        "storageSpecVersion": "1.0",
+        "storageDeploymentName": "[concat(variables('storageSpecName'), '-templateSpec-deployment-', parameters('timeStamp'))]",
+        "storageTemplateLinkId": "[resourceId(variables('templateLibraryRG'), 'Microsoft.Resources/templateSpecs/versions', variables('storageSpecName'), variables('storageSpecVersion'))]"
     },
     "resources": [
         {
             // Deploys a storage account compliant with Corp IT policies
-            "name": "[variables('storageSpec').deploymentName]",
+            "name": "[variables('storageDeploymentName')]",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-06-01",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "id": "[variables('storageSpec').templateLinkId]",
-                    "contentVersion": "1.0.0.0"
+                    "id": "[variables('storageTemplateLinkId')]"
                 },
                 "parameters": {
-                    "storageConfig": "[parameters('storageConfig')]"
-                }
-            }
-        },
-        {
-            // Deploys a Windows VM compliant with Corp IT policies
-            "name": "[variables('vmSpec').deploymentName]",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2020-06-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "id": "[variables('vmSpec').templateLinkId]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "vmConfig": "[parameters('vmConfig')]"
+                    "storageAccountConfig": {
+                        "value": "[parameters('storageAccountConfig')]"
+                    },
+                    "storageAccountType": {
+                        "value": "[parameters('storageAccountType')]"
+                    }
                 }
             }
         }

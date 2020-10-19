@@ -1,0 +1,35 @@
+name: serviceOne-deployment-prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Testing'
+
+  push:
+    branches:
+      - master
+    paths:
+      - src/template-example
+
+jobs:
+  deploy-serviceOne-prod:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_07a68ce5}}
+    - name: Deploy to Azure Prod
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: 74729c08-12f9-49fc-9817-39e6af4041d1
+        scope: subscription
+        region: westeurope
+        template: src/template-example/serviceOne.template.json
+        parameters: src/template-example/serviceOne.prod.parameters.json
+        deploymentName: ${{ github.workflow }}-${{ github.run_id }}
