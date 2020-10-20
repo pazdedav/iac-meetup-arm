@@ -11,8 +11,7 @@
         "servicePrincipals": {
             "value": [
                 "d9087414-ac6c-4c1f-83f0-9afba0002262",
-                "dc3f6501-1f1e-4155-88cb-bbd6cb620d52",
-                "8c637cb2-f1db-458d-9bf2-a1309f5ce354"
+                "dc3f6501-1f1e-4155-88cb-bbd6cb620d52"
             ]
         }
     }
