@@ -1,5 +1,9 @@
 # Infrastructure as Code Meetup Oslo
 
+![template-library-iam](https://github.com/pazdedav/iac-meetup-arm/workflows/template-library-iam/badge.svg)
+![serviceOne-deployment-prod](https://github.com/pazdedav/iac-meetup-arm/workflows/serviceOne-deployment-prod/badge.svg)
+![manage-azure-policy-07a68ce5](https://github.com/pazdedav/iac-meetup-arm/workflows/manage-azure-policy-07a68ce5/badge.svg)
+
 ## Purpose
 
 This is a repository for Infrastructure as Code User Group Oslo [meetup](https://www.meetup.com/Infrastructure-As-Code-User-Group-Oslo/events/273116797/), demonstrating a complex end-to-end scenario for using advanced capabilities of Azure Resource Manager language (like templateSpecs, deployment scopes, deploymentScripts) and the new ARM DSL called Bicep.
